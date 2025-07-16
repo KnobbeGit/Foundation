@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31129.286
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{888888A0-9F3D-457C-B088-3A5042F75D52}") = "FoundationPythonApiExample", "FoundationPythonApiExample.pyproj", "{20DACE9F-9A53-4365-B0BB-0418D0157DFB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{20DACE9F-9A53-4365-B0BB-0418D0157DFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20DACE9F-9A53-4365-B0BB-0418D0157DFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {82C1EEE2-DC35-49A1-A736-D8C857209FDE}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 2
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://jclad.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = FoundationPythonApiExample.pyproj
+		SccLocalPath1 = .
+	EndGlobalSection
+EndGlobal
