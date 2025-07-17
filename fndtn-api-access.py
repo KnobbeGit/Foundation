@@ -41,16 +41,6 @@ def get_metadata():
     
 json_metadata = get_metadata()
 data = json.loads(json.dumps(json_metadata, indent=4))
-#pprint(data['matterFields'])
-
-# table = []
-# for field in data['matterFields']:
-#     property_name = field.get('propertyName', '')
-#     original_name = field.get('originalName', '')
-#     description = field.get('description', '')
-#     table.append([property_name, original_name, description])
-
-# print(tabulate(table, headers=["Field ID", "Field Name", "Description"], tablefmt="github"))
 
 ###
 # Construct a table listing matter custom fields with their IDs and descriptions
@@ -91,8 +81,3 @@ with open(csv_path, mode='w', newline='', encoding='utf-8') as csvfile:
     writer.writerow(["Field ID", "Field Name", "Description"])
     writer.writerows(PCFtable_sorted)
 print(f"Person Custom Field CSV exported to {csv_path}")
-
-#pprint(json_metadata)
-# first_response = json_metadata[0] if json_metadata else None
-# matterfields = first_response[0].get('matterfields', {}) if first_response else {}
-# pprint(matterfields)
