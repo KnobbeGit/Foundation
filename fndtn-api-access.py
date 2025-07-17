@@ -55,6 +55,7 @@ for field in data['matterCustomFieldTypes']:
 MCFtable_sorted = sorted(MCFtable, key=lambda x: x[0])
 print(tabulate(MCFtable_sorted, headers=["Field ID", "Field Name", "Description"], tablefmt="github"))
 
+# Export the sorted table to a CSV file
 csv_path = r'C:\Users\jp.laub\Documents\Foundation\API\foundation_matter_custom_fields_api.csv'
 with open(csv_path, mode='w', newline='', encoding='utf-8') as csvfile:
     writer = csv.writer(csvfile)
@@ -75,6 +76,7 @@ for field in data['personCustomFieldTypes']:
 PCFtable_sorted = sorted(PCFtable, key=lambda x: x[0])
 print(tabulate(PCFtable_sorted, headers=["Field ID", "Field Name", "Description"], tablefmt="github"))
 
+# Export the sorted table to a CSV file
 csv_path = r'C:\Users\jp.laub\Documents\Foundation\API\foundation_person_custom_fields_api.csv'
 with open(csv_path, mode='w', newline='', encoding='utf-8') as csvfile:
     writer = csv.writer(csvfile)
