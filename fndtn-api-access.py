@@ -42,6 +42,12 @@ def get_metadata():
 json_metadata = get_metadata()
 data = json.loads(json.dumps(json_metadata, indent=4))
 
+# # Export the full JSON metadata to a file
+# json_path = r'C:\Users\jp.laub\Documents\Foundation\API\foundation_metadata_api.json'
+# with open(json_path, 'w', encoding='utf-8') as jsonfile:
+#     json.dump(data, jsonfile, ensure_ascii=False, indent=4)
+# print(f"Metadata JSON exported to {json_path}")
+
 ###
 # Construct a table listing matter custom fields with their IDs and descriptions
 MCFtable = []
@@ -50,6 +56,24 @@ for field in data['matterCustomFieldTypes']:
     field_name = field.get('name', '')
     field_description = field.get('description', '')
     MCFtable.append([sourceRecordID, field_name, field_description])
+
+# Append the pre-defined matter fields to the table
+for field in data['matterFields']:
+    field_ID = field.get('name', '')
+    # # Check if the field has a "profileFields" key and if any of its items have "alwaysHide" set to True
+    # profile_fields = field.get('profileFields', [])
+    # if any(pf.get('alwaysHide', False) is True for pf in profile_fields):
+    #     continue
+    # If field_ID contains a hyphen, use sourceRecordID instead
+    if '-' in field_ID:
+        field_name = field.get('displayName', '')
+        field_ID = field.get('sourceRecordId', field_ID)
+    else:
+        field_name = field.get('displayName', '')
+    field_description = field.get('description', '')
+    # Only append if the field_name is not already present in MCFtable (from matterCustomFieldTypes)
+    if field_name not in [row[1] for row in MCFtable]:
+        MCFtable.append([field_ID, field_name, field_description])
 
 # Sort the table by sourceRecordID (first column) in ascending order
 MCFtable_sorted = sorted(MCFtable, key=lambda x: x[0])
@@ -71,6 +95,15 @@ for field in data['personCustomFieldTypes']:
     field_name = field.get('name', '')
     field_description = field.get('description', '')
     PCFtable.append([sourceRecordID, field_name, field_description])
+
+# Append the pre-defined person fields to the table
+for field in data['personFields']:
+    field_ID = field.get('name', '')
+    field_name = field.get('displayName', '')
+    field_description = field.get('description', '')
+    # Only append if the field_name is not already present in PCFtable (from personCustomFieldTypes)
+    if field_name not in [row[1] for row in PCFtable]:
+        PCFtable.append([field_ID, field_name, field_description])
 
 # Sort the table by sourceRecordID (first column) in ascending order
 PCFtable_sorted = sorted(PCFtable, key=lambda x: x[0])
