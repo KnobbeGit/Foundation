@@ -14,11 +14,6 @@ import os
 load_dotenv()   
 
 # # Define the base URL and API key for the Foundation API
-# base_url = 'https://knobbestaging.foundation.litera.com/'
-# api_key = 'knobbe-apikey'
-# api_key_value = '0f500c90-9df1-4bd4-b789-b89f1a1bcf65'
-
-# # Define the base URL and API key for the Foundation API
 base_url = os.getenv("BASE_URL")
 api_key = os.getenv("API_KEY")
 api_key_value = os.getenv("API_KEY_VALUE")
