@@ -1,17 +1,27 @@
 import requests
 from requests import api
 from requests.models import Response
+from dotenv import load_dotenv, dotenv_values
 import json
 import bcrypt
 from datetime import datetime, timezone
 from pprint import pprint
 from tabulate import tabulate
 import csv
+import os
 
-# Define the base URL and API key for the Foundation API
-base_url = 'https://knobbestaging.foundation.litera.com/'
-api_key = 'knobbe-apikey'
-api_key_value = '0f500c90-9df1-4bd4-b789-b89f1a1bcf65'
+# Load environment variables from .env file if it exists
+load_dotenv()   
+
+# # Define the base URL and API key for the Foundation API
+# base_url = 'https://knobbestaging.foundation.litera.com/'
+# api_key = 'knobbe-apikey'
+# api_key_value = '0f500c90-9df1-4bd4-b789-b89f1a1bcf65'
+
+# # Define the base URL and API key for the Foundation API
+base_url = os.getenv("BASE_URL")
+api_key = os.getenv("API_KEY")
+api_key_value = os.getenv("API_KEY_VALUE")
 
 # Use bcrypt to hash the API key with a timestamp per Litera documentation
 def hash_api_key_with_timestamp():
