@@ -19,33 +19,31 @@ api_key = os.getenv("API_KEY")
 api_key_value = os.getenv("API_KEY_VALUE")
 
 # Use bcrypt to hash the API key with a timestamp per Litera documentation
-def hash_api_key_with_timestamp():
-    #raw_timestamp = datetime.now(timezone.utc)
-    #formatted_timestamp = raw_timestamp.strftime("%Y-%m-%dT%H:%M:%S.%f0Z")
+def get_foundation_headers():
     instant_timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%fZ")[:-1] + "0Z"  
-    #instant_timestamp = datetime.utcnow().strftime("%Y-%m-%dT%H:%M:%S.%fZ")[:-1] + "0Z"  # Ensures 7 places after decimal
     combined = api_key_value + "|" + instant_timestamp
     salt = bcrypt.gensalt()
     hashed = bcrypt.hashpw(combined.encode('utf-8'), salt)
-    return hashed, instant_timestamp
+    hashed_key = hashed, instant_timestamp
+    result = {'x-foundation-api-key': api_key, 'x-foundation-timestamp': hashed_key[1], 'x-foundation-api-auth': hashed_key[0], "accept":"application/json"}
+    return result
 
-hashed_key = hash_api_key_with_timestamp()
-headers = {'x-foundation-api-key': api_key, 'x-foundation-timestamp': hashed_key[1], 'x-foundation-api-auth': hashed_key[0], "accept":"application/json"}
-
-# Function to get metadata from the Foundation metadata API endpoint
-def get_metadata():
-    url = f'{base_url}api/v1/application/metaData/'
-    response = requests.get(url, headers=headers)
+# Get metadata from the Foundation Metadata API endpoint and return it as JSON
+def get_foundation_metadata():
+    headers = get_foundation_headers()
+    url = f"{base_url}api/v1/application/metadata"
+    response = requests.get(url, headers=headers) #, verify=False
+    
     if response.status_code == 200:
-        print({response.status_code})
-        #pprint(response.json())
-        return response.json()
+        metadata = response.json()
+        # pprint(metadata)
+        return metadata
     else:
-        print(f"Error fetching metadata: {response.status_code}")
+        print(f"Error: {response.status_code} - {response.text}")
         return None
     
-json_metadata = get_metadata()
-data = json.loads(json.dumps(json_metadata, indent=4))
+# Download the metadata as a Python dictionary
+data = json.loads(json.dumps(get_foundation_metadata(), indent=4))
 
 # # Export the full JSON metadata to a file
 # json_path = r'C:\Users\jp.laub\Documents\Foundation\API\foundation_metadata_api.json'
