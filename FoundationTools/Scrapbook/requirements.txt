@@ -1,0 +1,7 @@
+pandas
+requests
+azure-identity
+azure-keyvault-secrets
+jupyterlab
+notebook
+ipykernel
