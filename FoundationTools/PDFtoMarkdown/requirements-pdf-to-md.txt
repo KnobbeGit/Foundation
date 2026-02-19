@@ -1,0 +1,4 @@
+PyMuPDF>=1.23.0
+
+# Install with:
+# pip install -r requirements-pdf-to-md.txt

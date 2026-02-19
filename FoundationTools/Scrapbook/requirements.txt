@@ -5,3 +5,5 @@ azure-keyvault-secrets
 jupyterlab
 notebook
 ipykernel
+bcrypt
+tabulate
