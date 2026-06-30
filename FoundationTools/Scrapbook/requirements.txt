@@ -1,0 +1,10 @@
+pandas
+requests
+pip-system-certs
+azure-identity
+azure-keyvault-secrets
+jupyterlab
+notebook
+ipykernel
+bcrypt
+tabulate
