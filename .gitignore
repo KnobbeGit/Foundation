@@ -28,3 +28,6 @@ build/
 
 # Ignore credentials folder if needed
 credentials/
+
+# Ignore exports folder
+exports/
